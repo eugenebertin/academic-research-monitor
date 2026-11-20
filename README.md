@@ -108,7 +108,7 @@ cd academic-research-monitor
 research_monitor
 ```
 
-For a manual test, run `monthly_monitor manual` and enter how many days to fetch. For a future local monthly run, `monthly_monitor prepare --max-prompts 2` fetches a preview without calling a model. After reviewing either preview, a person must approve that exact snapshot using the printed `monthly_monitor screen` command. Reports are saved separately by run. See [monthly usage](docs/advanced_usage.md#monthly-local-workflow) before automating; no scheduler is installed.
+For a manual test, run `monthly_monitor manual` and enter how many days to fetch. For a future local monthly run, `monthly_monitor prepare --max-prompts 2` fetches a preview without calling a model, continuing from the last completed date coverage. After reviewing either preview, a person must approve that exact snapshot using the printed `monthly_monitor screen` command. Reports are saved separately by run. See [monthly usage](docs/advanced_usage.md#monthly-local-workflow) before automating; no scheduler is installed.
 
 ---
 

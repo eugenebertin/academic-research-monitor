@@ -8,7 +8,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest import mock
 
@@ -45,6 +45,16 @@ class MonthlyMonitorTest(unittest.TestCase):
     def approve(self, path):
         return hashlib.sha256(path.read_bytes()).hexdigest()
 
+    def prepare_at(self, now, days=None):
+        with contextlib.redirect_stdout(io.StringIO()):
+            return mm.prepare(self.focus, self.categories, days, 3, 10, 1, self.root / "runs", now)
+
+    def complete_at(self, now, days):
+        path = self.prepare_at(now, days)
+        with contextlib.redirect_stdout(io.StringIO()):
+            mm.screen(path, self.approve(path))
+        return path
+
     def test_prepare_is_model_free_and_dated_with_exact_preview(self):
         path = self.prepare(percent=10, limit=1)
         plan = json.loads(path.read_text(encoding="utf-8"))
@@ -55,6 +65,94 @@ class MonthlyMonitorTest(unittest.TestCase):
         self.assertTrue(path.parent.name.startswith("20260930"))
         self.assertNotEqual(path, self.prepare(percent=10, limit=1))
         self.fetch_mock.assert_called()
+
+    def test_automatic_window_continues_after_last_completed_coverage(self):
+        self.rows.clear()
+        self.complete_at(self.now, 30)
+        path = self.prepare_at(self.now + timedelta(days=31))
+        plan = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual((plan["start"], plan["end"]), ("2026-09-28", "2026-10-28"))
+        self.model_mock.assert_not_called()
+
+    def test_first_automatic_window_is_30_days(self):
+        path = self.prepare_at(self.now)
+        plan = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual((plan["start"], plan["end"]), ("2026-08-29", "2026-09-27"))
+
+    def test_unapproved_or_failed_runs_do_not_advance_coverage(self):
+        self.rows.clear()
+        self.complete_at(self.now, 30)
+        later = self.now + timedelta(days=31)
+        self.prepare_at(later, 3)
+        self.rows[:] = [paper(1, "Cu2O thin film")]
+        failed = self.prepare_at(later, 3)
+        self.model_mock.side_effect = fc.SetupError("offline")
+        with self.assertRaises(fc.SetupError):
+            mm.screen(failed, self.approve(failed))
+        path = self.prepare_at(later)
+        self.assertEqual(json.loads(path.read_text(encoding="utf-8"))["start"], "2026-09-28")
+
+    def test_disjoint_manual_run_does_not_skip_the_gap(self):
+        self.rows.clear()
+        self.complete_at(self.now, 30)
+        later = self.now + timedelta(days=31)
+        self.complete_at(later, 3)
+        path = self.prepare_at(later)
+        self.assertEqual(json.loads(path.read_text(encoding="utf-8"))["start"], "2026-09-28")
+        with contextlib.redirect_stdout(io.StringIO()):
+            mm.screen(path, self.approve(path))
+        next_plan = json.loads(self.prepare_at(later + timedelta(days=1)).read_text(encoding="utf-8"))
+        self.assertEqual((next_plan["start"], next_plan["end"]), ("2026-10-29", "2026-10-29"))
+
+    def test_overdue_coverage_catches_up_in_bounded_windows(self):
+        self.rows.clear()
+        self.complete_at(self.now, 30)
+        path = self.prepare_at(self.now + timedelta(days=120))
+        plan = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual((plan["start"], plan["end"]), ("2026-09-28", "2026-12-26"))
+        with contextlib.redirect_stdout(io.StringIO()):
+            mm.screen(path, self.approve(path))
+        next_plan = json.loads(self.prepare_at(self.now + timedelta(days=120)).read_text(encoding="utf-8"))
+        self.assertEqual((next_plan["start"], next_plan["end"]), ("2026-12-27", "2027-01-25"))
+
+    def test_completed_legacy_report_is_recognized(self):
+        self.rows.clear()
+        path = self.complete_at(self.now, 30)
+        mm.report_path(path.parent).rename(path.parent / "report.txt")
+        plan = json.loads(self.prepare_at(self.now + timedelta(days=31)).read_text(encoding="utf-8"))
+        self.assertEqual(plan["start"], "2026-09-28")
+
+    def test_corrupt_completed_plan_refuses_to_guess(self):
+        self.rows.clear()
+        path = self.complete_at(self.now, 30)
+        path.write_text("{}\n", encoding="utf-8")
+        self.fetch_mock.reset_mock()
+        with self.assertRaisesRegex(fc.SetupError, "Cannot use completed run"):
+            self.prepare_at(self.now + timedelta(days=31))
+        self.fetch_mock.assert_not_called()
+
+    def test_no_new_dates_stops_before_fetch(self):
+        self.rows.clear()
+        self.complete_at(self.now, 30)
+        self.fetch_mock.reset_mock()
+        with self.assertRaisesRegex(fc.SetupError, "No new dates"):
+            self.prepare_at(self.now)
+        self.fetch_mock.assert_not_called()
+
+    def test_different_focus_does_not_use_old_coverage(self):
+        self.rows.clear()
+        self.complete_at(self.now, 30)
+        self.focus.write_text("Another focus", encoding="utf-8")
+        self.categories.write_text("code,interest\ncond-mat.mtrl-sci,Another focus\n", encoding="utf-8")
+        plan = json.loads(self.prepare_at(self.now + timedelta(days=31)).read_text(encoding="utf-8"))
+        self.assertEqual((plan["start"], plan["end"]), ("2026-09-29", "2026-10-28"))
+
+    def test_different_categories_do_not_use_old_coverage(self):
+        self.rows.clear()
+        self.complete_at(self.now, 30)
+        self.categories.write_text("code,interest\nphysics.optics,Cu2O thin film\n", encoding="utf-8")
+        plan = json.loads(self.prepare_at(self.now + timedelta(days=31)).read_text(encoding="utf-8"))
+        self.assertEqual((plan["start"], plan["end"]), ("2026-09-29", "2026-10-28"))
 
     def test_preview_shows_model_and_prompt_budget_without_calling_model(self):
         output = io.StringIO()
