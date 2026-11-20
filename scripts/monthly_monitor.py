@@ -189,7 +189,7 @@ def screen(plan_path, approval):
     try:
         data = plan_path.read_bytes()
         digest = hashlib.sha256(data).hexdigest()
-        if digest != approval:
+        if digest != approval.lower():
             raise fc.SetupError("Approval hash does not match the plan; review and approve the exact snapshot.")
         plan = json.loads(data)
         if (plan["version"] != 1 or plan["model"] != fc.COPILOT_MODEL
