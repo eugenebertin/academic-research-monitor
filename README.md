@@ -32,10 +32,10 @@ py --version
 curl.exe --version
 ```
 
-Download the project and go into its folder:
+On GitHub, copy the HTTPS URL of this repository (or your fork). Replace `<repository-url>` below with that URL, then run:
 
 ```powershell
-git clone https://github.com/notrealjulia/academic-research-monitor.git
+git clone <repository-url>
 cd academic-research-monitor
 ```
 
@@ -116,4 +116,5 @@ For a manual test, run `monthly_monitor manual` and enter how many days to fetch
 
 - [Troubleshooting](docs/troubleshooting.md): installation problems, error messages, no papers found
 - [Advanced usage](docs/advanced_usage.md): running single steps, file contents, settings
+- [Monthly automation](docs/automation.md): set up a local scheduled monitor with an approval step
 - [Experiments](docs/experiments.md): how the search-first option works, and the search and judge experiments

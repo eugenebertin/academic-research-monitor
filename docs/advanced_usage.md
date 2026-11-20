@@ -57,7 +57,7 @@ Local BM25 ranks titles and abstracts using the focus text; only the top percent
 
 Runs are saved under `data\monthly_runs\<UTC timestamp>-<unique ID>\`: `plan.json` and a report named `research_report-<UTC timestamp>-<unique ID>.txt`. Each report has a different date and ID, even for repeated runs in the same month. Checkpoints update only that run's report and never overwrite another run. A partial failure exits nonzero and keeps an **INCOMPLETE** report; a started plan cannot be replayed. A process crash between receiving a response and saving its checkpoint can lose that response. Crossref checks may also be inconclusive. The output is based on titles and abstracts only; DOI or journal metadata cannot confirm peer review.
 
-Automation still needs an external scheduler to run `prepare`, deliver its preview to the user, and invoke `screen` only after that user approves the exact hash. It also needs failure alerts, durable backups and periodic checks of credentials, model access and relevance quality. arXiv announcements can lag beyond the configured buffer, so continuous date coverage does not guarantee every paper is found. The repository does not configure a scheduler.
+Automation still needs a scheduler to run `prepare`, deliver its preview to the user, and invoke `screen` only after that user approves the exact hash. It also needs failure monitoring, durable backups and periodic checks of credentials, model access and relevance quality. arXiv announcements can lag beyond the configured buffer, so continuous date coverage does not guarantee every paper is found. The repository does not configure a scheduler; see the [local automation guide](automation.md) for an app-based setup.
 
 ### Fresh local workspaces
 
