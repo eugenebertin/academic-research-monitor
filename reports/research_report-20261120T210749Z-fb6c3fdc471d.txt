@@ -1,0 +1,886 @@
+MONTHLY RUN: COMPLETE
+arXiv retrieved: 2007; BM25 shortlisted: 201 (top 10%, nonzero scores only).
+Papers outside the shortlist were not screened. BM25 is not a relevance judgment.
+Screening model: gpt-6-luna; configured maximum: 6 prompts.
+Token consumption and charges are not measured.
+
+RESEARCH MONITOR REPORT
+========================================================================================
+Created: 20-11-2026 21:12 UTC
+
+Papers were selected by GitHub Copilot (gpt-6-luna) from each paper's title and abstract
+only. The full papers were not read. Check each paper yourself before relying on it.
+Material and database names below are copied from titles or abstracts, not verified
+growth recommendations or database records. Check novelty, synthesis history and
+suitability.
+
+YOUR SEARCH
+========================================================================================
+Research description:
+  The research focus is the exploration and demonstration of novel inorganic thin films
+  semiconductor and dielectric materials, never fabricated or only fabricated as
+  powders. Even though the main endeavour is the study of the materials themselves, the
+  sought after properties are mainly for applications such as solar cell absorber,
+  transparent conductors and photonics. In the broader sense, prediction of interesting
+  properties for quantum computing/ communication applications or  thermoelectrics are
+  also welcome. Generally, any suggestion of optoelectronic material with breakthrough
+  potential is welcome. The main objective of the agent will not necessarily be to
+  select advances in the field of computational discovery, but rather to guide
+  experimentalists and suggest interesting materials to grow.
+
+Additional details:
+  (none)
+
+arXiv categories (a paper counts if it is listed in any of them):
+  cond-mat.mtrl-sci  Materials Science (Physics > Condensed Matter)
+  physics.app-ph     Applied Physics (Physics > Physics)
+  cond-mat.mes-hall  Mesoscale and Nanoscale Physics (Physics > Condensed Matter)
+  physics.optics     Optics (Physics > Physics)
+
+Dates searched:
+  papers whose first arXiv version was submitted from 19-10-2026 00:00 UTC through
+  17-11-2026 23:59 UTC (30 days, inclusive)
+
+RESULTS
+========================================================================================
+Papers retrieved from arXiv: 2007
+Papers selected as matches:  23
+Screening batches completed: 6 of 6
+Copilot usage: token consumption and charges are not measured by this report.
+
+----------------------------------------------------------------------------------------
+1. Amorphous selenium-alloyed TeOx thin-film solar cells
+
+  Authors: Zhaoheng Ling, Linqu Luo, Chrysa Aivalioti, Temur Maksudov, Mengxi Zhang,
+  Theodoulos Kalogerakis, Lazaros Panagiotidis, Elefterios Lidorikis, Spyros Doukas,
+  Nikolaos Kalfagiannis, Epameinondas Tziortzios, Leonidas Tsetseris, Huihui Zhu, Ao
+  Liu, Yong-Young Noh, Martin Heeney, Shadi Fatayer, Thomas D. Anthopoulos
+  First submitted: 28-10-2026 10:54 UTC
+  arXiv: https://arxiv.org/abs/2610.38643
+
+  Why it was selected:
+    It demonstrates amorphous TeO$_x$:Se thin films as photovoltaic absorbers, with
+    selenium alloying used to control defects and improve device performance.
+
+  Material mentioned: TeO$_x$:Se
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Tellurium dioxide (TeO$_2$) is a wide-bandgap oxide with attractive processing
+    versatility and emerging p-type semiconducting behaviour, making it a promising
+    material system for optoelectronic and photovoltaic applications. However,
+    TeO$_2$-derived thin films prepared by scalable manufacturing processes, such as
+    vacuum sublimation, can contain residual metallic Te$^0$ species that introduce trap
+    states, limit hole transport, and promote carrier recombination. Here, we
+    demonstrate a selenium alloying strategy to control the defect chemistry of
+    vacuum-sublimed TeO$_x$ films. TeO$_2$:Se powder mixtures (90:10~wt\%) were
+    thermally evaporated and subsequently annealed in air at 225~$^\circ$C for up to
+    9~h, yielding amorphous TeO$_x$:Se films with an optical bandgap of 0.98~eV under
+    optimised conditions. Structural, chemical, optical, and electrical analyses show
+    that prolonged annealing promotes Se redistribution, suppresses residual Te$^0$ to
+    approximately 0.4\%, reduces the film's surface roughness, and shifts the
+    valence-band edge. To evaluate the potential of TeO$_x$:Se for photovoltaic
+    applications, we fabricated thin-film solar cells with an
+    ITO/ZnO/TeO$_x$:Se/MoO$_x$/Ag architecture. Devices based on an 80~nm TeO$_x$:Se
+    active layer annealed for 9~h exhibit optimal performance, with broadband
+    photocurrent generation from 300 to 1000~nm, yielding an open-circuit voltage of
+    0.50~V, a short-circuit current density of 8.50~mA~cm$^{-2}$, a fill factor of 0.44,
+    and a maximum power conversion efficiency of approximately 1.87\%. These results
+    establish selenium-alloyed TeO$_x$ as a viable oxide-derived absorber for thin-film
+    photovoltaics and highlight chemical-state control as an effective route for
+    improving photovoltaic performance.
+
+----------------------------------------------------------------------------------------
+2. AgBiS2 near-infrared absorbers for thin film tandem photovoltaics
+
+  Authors: Shiling Dong, Yongjie Wang, Hae-Jun Seok, Mengyuan Huang, Edward Newton, Der
+  Ying Chen, Yixin Wang, Xiaoyu Guo, Keisuke Takemoto, Dusan Ivanovic, Avari Roy, Yongge
+  Yang, Grey Christoforo, Rebekah Fraser, Seongrok Seo, John O'Sullivan, Ha Kyung Park,
+  Jack M. Woolley, Ji-Seon Kim, Ruy S. Bonilla, Henry J. Snaith, Qing Shen, Aditya
+  Sadhanala, Lydia H. Wong, Robert L. Z. Hoye
+  First submitted: 01-11-2026 11:04 UTC
+  arXiv: https://arxiv.org/abs/2611.01797
+
+  Why it was selected:
+    It develops thicker AgBiS2 nanocrystal films for near-infrared absorption in tandem
+    photovoltaics.
+
+  Material mentioned: AgBiS2
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    AgBiS2 has rapidly risen in efficiency as single-junction photovoltaics (PVs), but
+    its potential for tandem PVs is unexplored. Herein, we perform optical modeling
+    based on the experimental absorption spectrum of AgBiS2, revealing that, as the NIR
+    sub-cell, efficiencies exceeding 47.5% are achievable in triple-junction tandems,
+    superseding tandems using Pb/Sn perovskite NIR cells (44.2%). However, fulfilling
+    this potential requires overcoming the limited transport properties of AgBiS2
+    nanocrystal films, which constrains film thicknesses to only 30-50 nm, severely
+    restricting NIR response. A solution-phase ligand exchange process is herein
+    developed, allowing one-step deposition of passivated AgBiS2 nanocrystals that
+    maintain efficient charge-carrier extraction despite an order of magnitude increase
+    in film thickness. These films enable 24.0%-efficient four-terminal tandems with
+    visible-light-absorbing lead-halide perovskite sub-cells, and monolithic tandems
+    successfully demonstrating voltage addition. AgBiS2 PVs have high stability,
+    retaining >90% of the original efficiency after 3 months of storage in dry air
+    without encapsulation. This work establishes the significant potential of AgBiS2 as
+    a stable and scalable NIR absorber for tandem PVs.
+
+----------------------------------------------------------------------------------------
+3. Optical frequency combs on thin-film lithium niobate: from principles to applications
+
+  Authors: Xiangzhi Xie, Tianqi Lei, Zeyu Luo, Binbin Nie, Yanyun Xue, Yikun Chen,
+  Qi-Fan Yang, Yaowen Hu, Cheng Wang
+  First submitted: 09-11-2026 12:17 UTC
+  arXiv: https://arxiv.org/abs/2611.12292
+
+  Why it was selected:
+    This review describes thin-film lithium niobate as an integrated-photonics platform
+    and surveys its optical frequency comb applications.
+
+  Material mentioned: TFLN
+  DOI: 10.3788/PI.2026.R16
+  Publication: Crossref journal article; peer review unverified
+  Venue: Photonics Insights
+  Abstract:
+    Optical frequency combs, consisting of mutually coherent and equally spaced spectral
+    lines, provide a powerful means of synthesizing, distributing, and processing
+    optical frequencies on chip. Among integrated photonic platforms, thin-film lithium
+    niobate (TFLN) is particularly attractive for comb generation because it combines
+    strong electro-optic (EO) functionality, accessible $χ^{(2)}$ and $χ^{(3)}$
+    nonlinearities, low-loss nanophotonic confinement, and versatile dispersion
+    engineering. This review summarizes the physical foundations and representative
+    realizations of TFLN combs, and discusses their applications in optical
+    communication, microwave photonics, optical computing, and precision metrology. The
+    integration of nonlinear functionality, EO control, and passive photonic components
+    is expected to advance compact, energy-efficient comb sources and broaden the
+    utility of TFLN in integrated photonics and quantum optics.
+
+----------------------------------------------------------------------------------------
+4. Fabrication and Characterization of Flexible In2O3 Thin-Film Transistors on Mica
+   Substrates
+
+  Authors: Hyeonjun Kong, Ping-Hsein Wu, Xian-Ye Jiang, Yasutaka Matsuo, Ying-Hao Chu,
+  Hiromichi Ohta
+  First submitted: 07-11-2026 00:34 UTC
+  arXiv: https://arxiv.org/abs/2611.10354
+
+  Why it was selected:
+    It demonstrates high-mobility In2O3 semiconductor thin-film transistors on a
+    flexible mica substrate.
+
+  Material mentioned: In2O3
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Flexible oxide-semiconductor thin-film transistors (TFTs) with high field-effect
+    mobility (uFE > 70 cm^2/Vs) are required for next-generation flexible displays.
+    Polycrystalline In2O3-based TFTs are promising candidates; however, conventional
+    flexible substrates such as plastics are not suitable because their fabrication
+    typically requires relatively high temperatures (~350 deg.C). In this study, we used
+    mica as a flexible substrate to fabricate polycrystalline In2O3-based TFTs,
+    motivated by previous demonstrations of crystalline oxide growth on mica. The
+    resulting TFTs exhibited a uFE of approximately 75 cm^2/Vs. The devices maintained
+    gate-modulated operation after 10^3 flex-out bending cycles at a 5 mm radius,
+    whereas flex-in cycling caused early electrical failure, likely due to In2O3 film
+    degradation. The TFTs also operated normally after exposure to 85 deg.C and 40%
+    relative humidity for one day. These results demonstrate that mica substrates enable
+    high-mobility, flex-out-compatible In2O3-based TFTs.
+
+----------------------------------------------------------------------------------------
+5. Y2CdX4 (X = S, Se, Te) Semiconductors: A First-Principles Study of Structural,
+   Electronic, Optical, and Energy-Related Properties
+
+  Authors: Faiq Umar, Sikander Azam
+  First submitted: 30-10-2026 11:46 UTC
+  arXiv: https://arxiv.org/abs/2611.00167
+
+  Why it was selected:
+    It predicts optoelectronic and thermoelectric properties for the Y2CdX4
+    semiconductor family, including band gaps and optical responses.
+
+  Material mentioned: Y2CdX4 (X = S, Se, Te)
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    We present a comprehensive density functional theory (DFT) investigation of the
+    structural, mechanical, electronic, optical, thermoelectric, and bonding properties
+    of Y2CdX4 (X = S, Se, Te) compounds for potential optoelectronic and
+    energy-conversion applications. Structural optimization reveals a systematic
+    expansion of the equilibrium lattice parameters from S to Te. The calculated bulk
+    moduli decrease from 83 GPa for Y2CdS4 to 68 GPa for Y2CdSe4 and 54 GPa for Y2CdTe4,
+    indicating progressive lattice softening. Electronic band-structure calculations
+    predict indirect band gaps of 2.42, 2.08, and 1.71 eV for Y2CdS4, Y2CdSe4, and
+    Y2CdTe4, respectively, with further narrowing upon inclusion of spin-orbit coupling.
+    The calculated dielectric functions, refractive indices, absorption coefficients,
+    reflectivity, optical conductivities, and electron energy-loss spectra reveal
+    systematic changes in optical response across the chalcogen series. The absorption
+    onset shifts toward lower photon energies, from approximately 2.4 eV in Y2CdS4 to
+    1.7 eV in Y2CdTe4. Thermoelectric calculations indicate promising Seebeck
+    coefficients and power factors, with Y2CdSe4 exhibiting a favorable balance of
+    transport properties. Charge-density distributions, electron localization functions,
+    and Bader charge analyses suggest increasing covalent bonding contributions from
+    sulfide to telluride. These findings highlight the potential of Y2CdX4 compounds for
+    tunable optoelectronic and energy-conversion applications.
+
+----------------------------------------------------------------------------------------
+6. Inverse design of superconductors and semiconductors with differentiable foundation
+   models
+
+  Authors: Cristóbal Méndez, Justin Tahmassebpur, Tomás A. Arias
+  First submitted: 06-11-2026 15:12 UTC
+  arXiv: https://arxiv.org/abs/2611.09572
+
+  Why it was selected:
+    It computationally designs novel crystal structures with photovoltaic-absorber band
+    gaps and evaluates their stability near the DFT hull.
+
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Designing a crystal for a target property requires choosing its elements,
+    stoichiometry, and atomic structure together, yet gradients exist only for the
+    continuous structural variables. We introduce differentiable Equiformer fast
+    effective-atom theory (DEFEAT), which lets a pretrained EquiformerV3 foundation
+    model accept continuous species weights and site occupancies without retraining on
+    fractional data, thereby enabling gradient-based materials optimization. Gradients
+    from fine-tuned property models and a machine-learned energy penalty then guide
+    updates to composition, atom count, atomic positions, and lattice vectors in a
+    single optimization. In a search for phonon-mediated superconductors,
+    density-functional perturbation theory on 45 structurally novel designs gives
+    isotropic Allen-Dynes critical temperatures above 10 K for 39; the highest is 24.0 K
+    for ZrTiNb2CN3, and H4LiPd3 (23.2 K) lies on the static DFT hull. In searches for
+    photovoltaic absorbers, SCAN calculations confirm ten novel crystal structures with
+    band gaps within 20% of a 1.34 eV target on their respective raw or empirically
+    corrected scales, all within 70 meV/atom of the DFT hull, and show that the
+    systematic gap error of the training functional propagates into the designs unless
+    the objective corrects for it. Quasiharmonic free energies from machine-learned
+    potentials further show that finite-temperature competition with solid phases can
+    reorder candidates relative to the static hull.
+
+----------------------------------------------------------------------------------------
+7. Quantum-Metric-Induced Distinct Optoelectronic Responses in Triple $M$ Valleys
+
+  Authors: Yongliang Song, Shuxian Sun, Zhichao Zhou, Xiao Li
+  First submitted: 11-11-2026 07:35 UTC
+  arXiv: https://arxiv.org/abs/2611.15145
+
+  Why it was selected:
+    It predicts tunable optoelectronic responses in antiferromagnetic MoI$_3$ bilayers,
+    including a nonlinear valley Hall effect.
+
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    While $K_{\pm}$ valleys with contrasting optoelectronic properties have been the
+    main focus of valleytronics, the lack of reliable manipulation methods for $M$
+    valleys leaves numerous $M$-valley materials untapped. Here, we discover that three
+    flavors of $M$ valleys become distinguishable via quantum-metric-induced
+    optoelectronic responses. The tight-binding calculations demonstrate that by tuning
+    the electric-field orientation, opposite nonlinear Hall currents from any pair of
+    $M$ valleys can be chosen to realize the nonlinear valley Hall effect. Moreover,
+    linearly polarized light allows for preferential excitation of individual $M$
+    valleys, driving photoexcited valley-polarized Hall transport. Using
+    first-principles calculations, we further validate the quantum-metric-induced
+    optoelectronic responses in antiferromagnetic $\mathrm{MoI}_3$ bilayers, which
+    exhibit a significant nonlinear valley Hall conductivity amenable to transport
+    measurements. Our findings extend the scope of valleytronics from conventional
+    binary $K_{\pm}$ valleys to triple $M$ valleys and pave the way for designing
+    advanced optoelectronic devices with multiple quantum states of high tunability.
+
+----------------------------------------------------------------------------------------
+8. Oxygen partial pressure induced dielectric phase evolution in PLD deposited Barium
+   Strontium Titanate thin films
+
+  Authors: Shashi Pandey, Suk Hyun Sung, Jacob Fernandez, John T. Heron
+  First submitted: 26-10-2026 21:36 UTC
+  arXiv: https://arxiv.org/abs/2610.36313
+
+  Why it was selected:
+    It demonstrates that oxygen growth pressure can tune the dielectric phase and
+    structure of epitaxial BST thin films.
+
+  Material mentioned: BST
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Barium Strontium Titanate ((BaxSr1-x)TiO3, BST) thin films are amongst the most
+    extensively studied dielectric alloys over the last decade. This is due to the
+    tunability of the dielectric constant and dissipation factor in the underlying
+    ferroelectric and paraelectric states. One important feature of BST is that the
+    competition between the ferroelectric BaTiO3 and the paraelectric SrTiO3 parent
+    phases can be tuned by the A-site alloy concentration, opening a platform for
+    exploring dielectric phase competition. However, the understanding of the interplay
+    between and establishing the control of the dielectric phase from thin film
+    deposition parameters has not been sufficiently reported in the literature. Here, we
+    synthesized a series of SrRuO3/BST/SrRuO3 epitaxial thin film heterostructures by
+    Pulsed Laser Deposition (PLD) from a (Ba0.9Sr0.1)TiO3 target under systematic
+    variation of the oxygen partial pressure during the BST deposition. We mapped the
+    dielectric phase of the film to the oxygen growth pressure, film composition, and
+    film crystal structure. A ferroelectric, relaxor-like, or paraelectric phase can be
+    obtained with relatively moderate change in oxygen growth pressure. Scanning
+    transmission electron microscopy (STEM) analysis further indicates that this
+    pressure-dependent phase evolution is accompanied by a structural transition of the
+    BST lattice from tetragonal toward a nearly cubic phase, with the latter
+    corresponding to the relaxor-like state. The control of the dielectric phase opens a
+    pathway to study phase evolution and enable future computing technologies.
+
+----------------------------------------------------------------------------------------
+9. Super-tetragonal ferroelectric barium titanate through anionic overstoichiometry
+
+  Authors: Jingtian Zhao, Johanna van Gent González, Iñigo Robredo-Magro, Ewout van der
+  Veer, Daniel A. Chaney, Jorge Íñiguez-González, Beatriz Noheda, Martin F. Sarott
+  First submitted: 21-10-2026 08:31 UTC
+  arXiv: https://arxiv.org/abs/2610.29401
+
+  Why it was selected:
+    It demonstrates a super-tetragonal BaTiO$_3$ thin-film phase with enhanced
+    ferroelectric properties, directly relevant to novel dielectric films and photonics.
+
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Ferroelectric oxides, characterized by an electrical polarization that is switchable
+    with an electric field, are an appealing class of materials for energy-efficient
+    computing, electronics, and photonics. In thin films, the properties of
+    ferroelectrics are commonly tuned using substrate-imposed epitaxial strain, an
+    approach limited to biaxial strain states and a finite number of available
+    substrates. Here, we demonstrate that is is possible to move beyond conventional
+    epitaxial growth by using pulsed laser deposition under highly non-equilibrium
+    conditions. Specifically, we show that this unconventional processing route allows
+    us to stabilize a super-tetragonal phase of ferroelectric $\text{BaTiO}_3$. The key
+    to this stabilization lies in the insertion of surplus oxygen atoms into the unit
+    cell, resulting in peroxide bond formation that give rise to an aspect ratio of as
+    high as 1.08. Notably, this super-tetragonal phase exhibits an enhanced
+    ferroelectric polarization, reduced coercivity, lower leakage currents, and
+    increased cycling endurance compared to conventional bulk-like $\text{BaTiO}_3$
+    films. These results, thus, showcase the potential of non-equilibrium growth for
+    defect engineering to obtain emergent phases in complex oxides and tune their
+    physical properties in thin films expanding the scope of traditional epitaxy.
+
+----------------------------------------------------------------------------------------
+10. A Density Functional Tight Binding Model for Rapid Screening of
+   Spin-Orbit-Coupling-Driven Topological Properties in Bismuth
+
+  Authors: Nir Goldman, Ben Hourahine
+  First submitted: 16-11-2026 15:24 UTC
+  arXiv: https://arxiv.org/abs/2611.21244
+
+  Why it was selected:
+    It maps strain-dependent band gaps and topological transitions in bismuthene,
+    offering a candidate thin-film material for quantum-related properties.
+
+  Material mentioned: bismuthene
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    We present a transferable Density Functional Tight Binding (DFTB) model for bismuth
+    with explicit spin-orbit coupling that enables exploration of the structural degrees
+    of freedom governing topological properties with minimal computational resources. We
+    have used our DFTB model to run high-throughput calculations at a scale that would
+    be significantly more expensive with standard Kohn-Sham Density Functional Theory
+    (DFT) to determine a strain-buckling map of electronic and topological properties
+    for bismuthene, where we identify regions of band gap closure and band inversion as
+    a function of structural parameters. We show that our approach yields an accurate
+    band structure for the rhombohedral phase, where small band gaps exist at or near
+    time-reversal-invariant momentum (TRIM) points. We then demonstrate the
+    transferability of our model to bismuth properties not included in our training data
+    through determination of the rhombohedral phase phonon density of states and
+    energetic ordering of additional bismuth solid phases. Finally, we have validated
+    our topological predictions through comparison to DFT results for the optimized
+    bilayer geometries, a band inversion order parameter, and the $\mathbb{Z}_2$
+    invariant as a function of monolayer unit cell length. Our efforts establish DFTB as
+    a rigorous approach for topological characterization while yielding approximately
+    three orders of magnitude increase in computational efficiency relative to DFT. Our
+    model can thus serve as a computational tool for topological materials discovery by
+    enabling large-scale computational screening to address the potentially complex
+    relationship between physical-chemical properties and the resulting topological
+    classification.
+
+----------------------------------------------------------------------------------------
+11. Pressure dependent DFT study of mechanical, thermal, electronic, magnetic, and
+   optical properties of EuCd2As2: a magnetic semimetal
+
+  Authors: Salauddin Muhammad Anis, M. A. Afzal, R. S. Islam, S. H. Naqib
+  First submitted: 13-11-2026 12:34 UTC
+  arXiv: https://arxiv.org/abs/2611.18109
+
+  Why it was selected:
+    Its calculations predict strong visible and ultraviolet absorption in EuCd2As2,
+    suggesting possible optoelectronic applications.
+
+  Material mentioned: EuCd2As2
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    We present a comprehensive spin-polarized density functional theory (DFT)
+    investigation of the pressure-dependent physical properties of EuCd2As2, a
+    magnetically and topologically rich compound with potential applications in
+    spintronics and optoelectronics technologies. We have investigated the structural,
+    mechanical, thermophysical, acoustic, electronic, magnetic, and optical properties
+    of this material at pressures of 0, 2, 4, 6, and 8 GPa. The calculated lattice
+    parameters at zero pressure are in good agreement with experimental values. The
+    mechanical stability of EuCd2As2 is maintained over the investigated pressure range.
+    The elastic constants, bulk modulus, shear modulus, and Young's modulus are found to
+    be tunable with applied pressure. The compound undergoes a brittle to ductile
+    transition at higher pressures. The Debye temperature, melting temperature, and
+    Grüneisen parameter are found to be strongly pressure-dependent. Phonon thermal
+    conductivity has been evaluated. The electronic properties of EuCd2As2 were studied
+    through band structure and density of states (DOS). The effect of pressure up to 8
+    GPa was investigated for the ferromagnetic (FM) phase. At 0 GPa, the calculated FM
+    band structure exhibits no band gap at the Fermi level, which confirms the
+    semimetallic nature of EuCd2As2. The net magnetic moment of 6.96 μ_B per unit cell
+    was obtained for this compound indicating its potential for spintronics application.
+    The optical properties, including the dielectric function, refractive index,
+    absorption coefficient, optical conductivity, reflectivity, and loss function, are
+    calculated. The calculated optical spectra indicate strong absorption in the visible
+    and ultraviolet regions, suggesting that EuCd2As2 may have potential for
+    optoelectronic applications.
+
+----------------------------------------------------------------------------------------
+12. Room-Temperature Quantum Emission from Boron Nitride Nanotubes
+
+  Authors: Ke-Sean J. M. Peter, Ryan A. Kowalski, David A. Curie, Dakota Braaten,
+  Matthew W. Day, Denis R. Candido, Deyu Li, Richard F. Haglund, Joshua D. Caldwell,
+  Richarda Niemann
+  First submitted: 05-11-2026 18:51 UTC
+  arXiv: https://arxiv.org/abs/2611.08460
+
+  Why it was selected:
+    It demonstrates room-temperature single-photon emission across the visible spectrum
+    from boron nitride nanotubes, relevant to quantum photonics and communication.
+
+  Material mentioned: BNNTs
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Quantum information systems such as quantum key distribution and quantum
+    communications require bright, high-purity, stable sources of single photons to act
+    as carriers of quantum information. As such, methods for obtaining single photon
+    emitters (SPEs) in solid-state devices capable of articulating with quantum photonic
+    circuits are a necessary obstacle that must be overcome. Hexagonal boron nitride
+    (hBN) flakes have been extensively studied as a host material for SPEs, though
+    working in two dimensions is accompanied by engineering complexity. However,
+    dimensionality can be reduced through the implementation of boron nitride nanotubes
+    (BNNTs). Here we investigate the potential of BNNTs as room-temperature SPEs using
+    confocal photoluminescence microscopy and Hanbury Brown-Twiss interferometry.
+    Quantum emitters were found in BNNTs spanning the entirety of the visible spectrum,
+    including spectral regions where SPEs within hBN have not been reported.
+    Furthermore, each tube was found to possess multiple SPEs at varying emission
+    wavelengths along the length, exhibiting lifetimes as fast as 0.5 ns, which is about
+    two-fold faster than the fastest hBN SPEs. Additionally, we demonstrate that surface
+    passivation/coating mitigates blinking events, therefore increasing the emitter
+    stability. Thus, BNNTs can function as a single structure supporting a variety of
+    multiwavelength SPE sources, while maintaining a compact radius of ~25 nm, making
+    them ideally suited for deterministic placement and integration within nanophotonic
+    devices such as waveguides and interferometric filters.
+
+----------------------------------------------------------------------------------------
+13. Pulse Laser Deposited GaFeO3 Thin Film Grown on FTO: Correlated Ferroic Orders and
+   Strong Magnetodielectric Coupling at Room Temperature
+
+  Authors: Ishita Jana, Sourav Sarkar, Soham Saha, Kalyan Mandal
+  First submitted: 29-10-2026 09:33 UTC
+  arXiv: https://arxiv.org/abs/2610.39696
+
+  Why it was selected:
+    It reports GaFeO3 thin films with room-temperature ferroic order and strong
+    magnetodielectric coupling, relevant to multifunctional dielectric materials.
+
+  Material mentioned: GaFeO3
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Room-temperature single-phase multiferroics exhibiting coupled ferroelectric and
+    magnetic order are promising candidates for next-generation magnetoelectric memory
+    and spintronic technologies. Here, we report the growth of approximately 100.6 nm
+    thick polycrystalline orthorhombic GaFeO3 thin films on fluorine-doped tin
+    oxide-coated glass (FTO) substrates by pulsed laser deposition. Core-level X-ray
+    photoelectron spectroscopy reveals a reduced Fe2+ concentration and suppressed
+    oxygen-vacancy formation, contributing to reduced leakage current and improved
+    ferroelectric characteristics. The films exhibit robust ferrimagnetism and
+    ferroelectricity at room temperature, confirming the coexistence of ferroic orders
+    within a single phase. Piezoresponse Force Microscopy further demonstrates
+    reversible local polarization switching, accompanied by an asymmetric butterfly loop
+    with coercive voltages of -0.31 V and +1.07 V. The films also exhibit a high
+    relative dielectric constant of approximately 1700 with a relatively low dielectric
+    loss tangent of approximately 2.83 at 1 MHz. Moreover, a significant
+    magnetodielectric coefficient of approximately 2.3% is observed under a relatively
+    small magnetic field of only 0.1 kOe, highlighting strong magnetoelectric coupling.
+    These results establish GaFeO3 thin films as a promising platform for
+    room-temperature multifunctional devices, mainly low-field magnetoelectric memory
+    and spintronic architectures.
+
+----------------------------------------------------------------------------------------
+14. Control of the Electronic and Atomic Structure of the Altermagnetic α-MnTe Surface
+   via Substrate-Induced Surfactants
+
+  Authors: Martin Heinrich, Mahdi Hajlaoui, Takuya Takashiro, Tetiana Zakusylo, Petr
+  Babor, Ondrej Caha, Dawid Wutke, Natalia Olszowska, Gunther Springholz, Matthias
+  Muntwiler
+  First submitted: 26-10-2026 11:21 UTC
+  arXiv: https://arxiv.org/abs/2610.35236
+
+  Why it was selected:
+    It shows that substrate-controlled surface structure in α-MnTe thin films can tune
+    spin-polarized surface states, a potential route to functional semiconductor films.
+
+  Material mentioned: α-MnTe
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Altermagnets are a novel class of materials with unique momentum dependent
+    spin-polarization of the electronic band structure, which opens up new avenues for
+    spintronic devices. Altermagnetic α-MnTe is particularly interesting for such
+    applications due to its giant spin splitting and the persistence of altermagnetic
+    order up to room temperature. Growth of thin films is, however, challenging and
+    governed by interactions with the substrate. As a result, the surface of α-MnTe thin
+    films exhibits very different atomic structures in dependence of the substrate
+    material. Whereas on SrF2(111) an atomically clean, perfectly (2x2) reconstructed
+    surface forms, on InP(111)A the MnTe surface is always InTe terminated due to
+    super-segregation of In from the substrate to the surface. Most strikingly, the InTe
+    surfactant layer displays a quasi-periodic dislocation network to accommodate the
+    InTe/MnTe lattice mismatch. This leads to the emergence of distinct surface states
+    in dependence of surface termination that strongly affect the electronic band
+    structure at the surface as shown by angle resolved photoemission and tunneling
+    spectroscopy. Thus, control and characterization of the atomic structure of the
+    surface is fundamentally important for understanding the properties of altermagnets
+    and provides room for engineering and tailoring of spin-polarized states in actual
+    devices.
+
+----------------------------------------------------------------------------------------
+15. Structural characterization of the rutile-GeO2/TiO2 (001) heterointerface
+
+  Authors: Imteaz Rahaman, Martha R. McCartney, David J. Smith, Kai Fu
+  First submitted: 22-10-2026 21:30 UTC
+  arXiv: https://arxiv.org/abs/2610.31934
+
+  Why it was selected:
+    Epitaxial rutile-GeO2 thin films on TiO2 are examined as a promising
+    ultrawide-bandgap semiconductor, making this relevant to experimental growth and
+    interface engineering.
+
+  Material mentioned: rutile-GeO2
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Rutile-GeO2 (r-GeO2) has emerged as a promising ultrawide-bandgap (UWBG)
+    semiconductor for future high-power device applications because of its favorable
+    combination of physical and electrical properties. This study has used
+    high-resolution transmission electron microscopy (HR-TEM) to compare
+    heterointerfaces between thin films of GeO2 grown by metal-organic chemical vapor
+    deposition on closely-lattice-matched rutile TiO2 (r-TiO2) substrates at
+    temperatures of 840° C and 925° C. Cross-sectional TEM observations reveal
+    interfaces with two entirely different structures: an amorphous GeOx/r-TiO2
+    heterostructure with an abrupt, highly faceted and non-planar interface, or a fully
+    epitaxial r-GeO2/r-TiO2 heterostructure characterized by a more wavy but often
+    facetted interface. Structural analysis of the latter sample revealed a high density
+    of strain-relieving interfacial dislocations, identified primarily as Lomer-type or
+    60°-type, that accommodated the ~4% lattice mismatch between the two materials,
+    while chemical analysis showed very limited interfacial intermixing.
+    Crystallographic analysis showed that the interface faceting was associated with
+    rutile {101} facets, with characteristic facet angles of ~114°; these observations
+    support thermally driven TiO2 (001) substrate faceting rather than an interface
+    reconstruction resulting from GeO2 epitaxy. Overall, these findings provide useful
+    insights into the mechanisms governing interface formation and strain relaxation in
+    r-GeO2/r-TiO2 heterostructures and suggest that further refinement of growth
+    conditions should enable improved epitaxial growth of r-GeO2 for future
+    ultrawide-bandgap electronic device applications.
+
+----------------------------------------------------------------------------------------
+16. Cavity-engineered ferroelectricity in SrTiO$_3$
+
+  Authors: Omar Mehio, Sylvia Griffitt, Andrew Pierce, Emil V. Bostrom, Hanbyul Kim,
+  Dylan P. Sotir, Darrell G. Schlom, Simone Latini, Kin Fai Mak, Jie Shan, Dongbin Shin,
+  Angel Rubio, Ankit S. Disa
+  First submitted: 29-10-2026 16:52 UTC
+  arXiv: https://arxiv.org/abs/2610.40756
+
+  Why it was selected:
+    The study demonstrates cavity-induced and cavity-enhanced ferroelectricity in
+    SrTiO$_3$ membranes, with potential applications in quantum transduction and
+    nonlinear integrated photonics.
+
+  Material mentioned: SrTiO$_3$
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Interfacing quantum materials with photonic cavity architectures is at the vanguard
+    of materials engineering. The structured electromagnetic fluctuations of a dark
+    cavity environment can renormalize fundamental thermodynamical material properties
+    and energy scales, holding promise to create a rich ecosystem of cavity-induced
+    ground states and functionalities absent in the bare material. However, direct
+    experimental demonstrations that cavity coupling can stabilize or enhance genuinely
+    new phases of matter have remained scarce. In this work, we establish the presence
+    of cavity-induced and cavity-enhanced ferroelectric phases in free-standing
+    SrTiO$_3$ membranes coupled to dark THz-frequency photonic crystal cavities. Using
+    THz spectroscopy, we observe ultrastrong coupling (USC) between the ferroelectric
+    soft mode in SrTiO$_3$ and the cavity resonance. The structural response of
+    SrTiO$_3$ to this USC is measured via second harmonic generation imaging, which
+    reveals a substantial (greater than 400%) enhancement of signal in the cavity
+    environment and a distinct modification of the crystalline symmetry, indicating the
+    onset and enhancement of ferroelectricity. We interpret these observations as
+    resulting from renormalized piezoelectric and flexoelectric couplings, which in turn
+    arise from the cavity-modified dielectric environment. This interpretation is
+    supported with microscopic modeling via DFT-based multi-scale dynamics simulations
+    and by macroscopic Ginzburg-Landau theory. Altogether, our experimental and
+    theoretical results firmly confirm that cavity engineering can indeed be used to
+    create new ground states in materials and enhance existing ones. This work
+    establishes a new paradigm for materials engineering with direct applications for
+    quantum transduction, quantum sensing, and nonlinear integrated photonics.
+
+----------------------------------------------------------------------------------------
+17. Altermagnetism-induced magneto-optical effects
+
+  Authors: Jun Ōiké, Robert Peters, Koki Shinada
+  First submitted: 17-11-2026 13:20 UTC
+  arXiv: https://arxiv.org/abs/2611.22750
+
+  Why it was selected:
+    It predicts detectable, field-free magneto-optical effects in named
+    antiferromagnets, offering a route to optical magnetic-domain imaging.
+
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Altermagnets break time-reversal symmetry despite their zero net magnetization,
+    enabling time-reversal-odd responses while retaining the advantages of
+    antiferromagnets. However, magneto-optical (MO) effects are not universal among
+    altermagnets because MO effects typically arise from magnetic dipole order
+    (ferromagnetism), which is generally absent in altermagnets. In this work, we
+    address this limitation by establishing octupolar MO effects, which arise from
+    magnetic octupole order through spatial dispersion. Owing to this distinct origin,
+    octupolar MO effects do not necessarily require spin-orbit coupling even in
+    collinear magnets and can arise without an external magnetic field in
+    antiferromagnets where conventional MO effects are symmetry-forbidden. Such
+    antiferromagnets include $d$-wave altermagnets such as RuO$_2$ and KV$_2$Se$_2$O,
+    certain $g$- and $i$-wave altermagnets, including CrSb, as well as noncoplanar
+    antiferromagnets such as MnTe$_2$ and pyrochlore iridates with all-in-all-out
+    magnetic order. From an experimental perspective, octupolar MO effects can reach
+    detectable magnitudes and offer potential for magnetic-domain imaging, as supported
+    by numerical calculations showing $μ$rad-scale Faraday rotation for a 100-nm-thick
+    sample in the visible-light range and a sign reversal between opposite domains.
+    Furthermore, octupolar MO effects are linked to an $f$-sum rule, enabling a
+    quantitative estimate of the spin magnetic octupole moment from optical
+    measurements. These results extend the scope of MO effects to a broad class of
+    antiferromagnets, including altermagnets, and open a field-free optical route to
+    exploring magnetic octupole order.
+
+----------------------------------------------------------------------------------------
+18. Machine Learning Aided Computational Discovery of Boride Substrates for Borophene
+   Synthesis
+
+  Authors: Luqing Wang, Qunfei Zhou, Qiucheng Li, Venkata Surya Chaitanya Kolluru, Hui
+  Li, Albert Tsui, Joshua Paul, Pierre Darancet, Mark C. Hersam, Maria K. Y. Chan
+  First submitted: 31-10-2026 01:44 UTC
+  arXiv: https://arxiv.org/abs/2611.00533
+
+  Why it was selected:
+    It identifies AlB2 and AgB2 surfaces as candidate substrates that could support
+    experimental synthesis of freestanding borophene, a material with potential
+    quantum-technology applications.
+
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Borophene, a monolayer of boron, is distinctive among two-dimensional materials
+    owing to its unique properties, including polymorphism and potential applications in
+    quantum technologies and energy conversion and storage. Nevertheless, its
+    applications are hindered by the strong binding of borophene to metal substrates,
+    which impedes the realization of freestanding borophene. Alternative substrates with
+    tunable binding to borophene are therefore highly desirable. Since boride layers
+    arise during borophene synthesis on metals, borides provide potential alternative
+    substrates for borophene synthesis. In this work, we investigate the binding
+    energies and interactions between borophene and 1356 boride surfaces for two
+    borophene phases (v1/6 and v1/9), using density functional theory (DFT) calculations
+    and machine learning (ML). Importantly, incorporating ML-predicted charge transfer
+    as an input feature to a subsequent ML model enables physics-informed predictions of
+    binding energies. Additional DFT calculations on four representative cases were
+    performed to validate the ML predictions. SHAP analysis reveals that the majority of
+    key descriptors are associated with delocalized electrons, highlighting the role of
+    electronic properties in governing binding strength. Combined DFT and ML screening
+    identifies 65 and 73 promising boride surfaces for the v1/6 and v1/9 phases,
+    respectively. Al- and Ag-based borides, including AlB2 and AgB2, emerge as
+    predominant candidates for both phases. The computationally predicted candidate
+    substrates and the deduced design guidelines provide a charge-transfer-informed ML
+    strategy for substrate selection and represent promising steps toward the
+    experimental realization of freestanding borophene.
+
+----------------------------------------------------------------------------------------
+19. Mapping the Phase Space of Cubic Chiral Semiconductors: High-Throughput
+   Search,Stability, and Prototype Families
+
+  Authors: Pierre-Paul De Breuck, Hai-Chen Wang, Reynaldo Mares-Gil, Miguel A. L.
+  Marques, Aldo H. Romero
+  First submitted: 13-11-2026 13:36 UTC
+  arXiv: https://arxiv.org/abs/2611.18161
+
+  Why it was selected:
+    Its high-throughput search predicts many stable cubic chiral semiconductors,
+    including candidates with intrinsic intermediate-band features.
+
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Chiral crystals show unique electronic, magnetic, and optical characteristics that
+    make them attractive for topological and spintronic applications. Nevertheless, the
+    limited set of identified chiral semiconductors, especially those with cubic
+    symmetry, has so far constrained their technological application. In this work, we
+    perform a high-throughput computational search for semiconducting chiral compounds
+    in the cubic space group $P4_332$ (No. 212). By integrating machine-learning
+    techniques with density functional theory, we obtain 24\,227 cubic chiral structures
+    containing up to five elements, and identify 368 thermodynamically stable
+    semiconductors on the convex hull and 3\,048 within 50~meV/atom. We analyze their
+    structural motifs, stability, and electronic band structures, highlighting recurring
+    prototype families, several of which show intrinsic intermediate-band features. Our
+    results substantially expand the known phase space of cubic chiral semiconductors
+    and may guide future efforts in the discovery and design of chiral materials.
+
+----------------------------------------------------------------------------------------
+20. First-Principles Investigation of Irida-Graphane: A Wide-Band-Gap Semiconductor
+   Derived from Irida-Graphene
+
+  Authors: Djardiel S. Gomes, Isaac M. Félix, Marcelo L. Pereira Junior
+  First submitted: 27-10-2026 12:00 UTC
+  arXiv: https://arxiv.org/abs/2610.37095
+
+  Why it was selected:
+    It proposes irida-graphane as a dynamically stable wide-band-gap semiconductor with
+    visible transparency and strong deep-ultraviolet absorption.
+
+  Material mentioned: irida-graphane
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Opening a band gap in metallic two-dimensional carbon allotropes is an important
+    step toward their use in electronic and optoelectronic devices, and full
+    hydrogenation has proven to be an effective route to achieve it. Here, we propose
+    irida-graphane, the fully hydrogenated derivative of the irida-graphene, a monolayer
+    composed of three-, six-, and eight-membered rings, and investigate its structural,
+    mechanical, electronic, and optical properties using density functional theory (DFT)
+    at the PBE and HSE06 levels combined with phonon and \textit{ab initio} molecular
+    dynamics (AIMD) simulations. All carbon atoms adopt $sp^3$ hybridization, with the
+    hydrogen atoms of the three- and six-membered rings bonded to opposite sides of a
+    buckled carbon framework, and the lattice parameter contracts by 4.3% with respect
+    to irida-graphene. The hydrogenation energy of $-0.53$ eV/H indicates that the
+    hydrogenation of irida-graphene from molecular hydrogen is exothermic. The absence
+    of imaginary phonon frequencies confirms the dynamical stability of irida-graphane,
+    and AIMD simulations show that its structure remains intact at temperatures up to
+    2000 K. Irida-graphane is mechanically isotropic, with an in-plane stiffness of
+    approximately 156 N/m, a Poisson's ratio of approximately 0.1, and critical strains
+    of approximately 20%. Hydrogenation transforms the metallic parent structure into a
+    semiconductor with an indirect band gap of 4.68 eV (PBE) and 6.0 eV (HSE06).
+    Irida-graphane is transparent in the visible range, with reflectivity below 0.3%,
+    and absorbs strongly in the deep ultraviolet, with absorption coefficients of the
+    order of $10^{5} - 10^{6}$ cm$^{-1}$. These results suggest irida-graphane as a
+    candidate wide-gap material for ultraviolet optoelectronics and transparent
+    coatings.
+
+----------------------------------------------------------------------------------------
+21. Dynamic Molecular Transformation Mediated Crystallization Regulation and Interface
+   Passivation in Tin Based Perovskite Solar Cells
+
+  Authors: Ying Tang, Zuhong Zhang, Hongzhuo Wu, Zhihao Li, Zhenhuang Su, Yonggang Yang,
+  Hairui Liu, Feng Yang, Zhe Li, Luca Sapienza, Jorge Pascual, Shengnan Zuo, Bo Hou,
+  Antonio Abate, Meng Li, Yufang Liu
+  First submitted: 07-11-2026 02:52 UTC
+  arXiv: https://arxiv.org/abs/2611.10420
+
+  Why it was selected:
+    It develops compact tin-based perovskite films with improved optoelectronic quality
+    for efficient, stable lead-free solar cells.
+
+  Material mentioned: tin-based perovskites
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Tin-based perovskites are promising candidates for lead-free photovoltaics but
+    suffer from labile Sn$^{2+}$ coordination, rapid crystallization, and severe
+    interfacial defects. Here, we develop a dynamic molecular transformation using
+    1-acetylpiperazine (PX) to regulate crystallization and interface chemistry
+    simultaneously. During nucleation and growth, the carbonyl group coordinates with
+    Sn$^{2+}$ to stabilize precursor complexes, moderate supersaturation, and enable
+    controlled crystal growth. Upon annealing, PX undergoes in situ molecular
+    transformation, suggested to form amidinium-functionalized species that
+    preferentially occupy surface A-site vacancies, forming a passivation layer and
+    suppressing nonradiative recombination. This coupled bulk-to-interface evolution
+    yields compact, highly crystalline films with improved optoelectronic quality.
+    Devices achieve a power conversion efficiency of 15.18% and retain 94.1% of initial
+    efficiency after 500 h of continuous illumination. This work demonstrates a dynamic
+    molecular engineering approach integrating crystallization control and interface
+    passivation, providing a pathway toward efficient and stable lead-free perovskite
+    photovoltaics.
+
+----------------------------------------------------------------------------------------
+22. Confinement Controlled Phase-Pure 2D Layered Perovskites for Band-Edge Engineering
+
+  Authors: Danila A. Tatarinov, Alexander Schleusener, Roman Krahne
+  First submitted: 29-10-2026 13:05 UTC
+  arXiv: https://arxiv.org/abs/2610.39974
+
+  Why it was selected:
+    It reports phase-pure 2D lead bromide perovskite powders with tunable band-edge
+    absorption and UV-blue emission, offering candidates for optoelectronic
+    investigation.
+
+  Material mentioned: 2D lead bromide perovskites
+  DOI: 10.1002/sstr.70580
+  Publication: Crossref journal article; peer review unverified
+  Venue: Small Structures
+  Abstract:
+    Controlling the number n of connected octahedra layers in two-dimensional metal
+    halide perovskites enables fine control of the semiconductor band gap that is highly
+    advantageous for optoelectronic and light emission applications. Phase purity in
+    terms of n is crucial towards narrow emission bands and the design of band structure
+    alignment for charge carrier funneling. We present a simple and scalable synthesis
+    method using cesium and butylammonium as A-cations to fabricate microcrystal powders
+    of 2D lead bromide perovskites that results in samples with very high n-phase
+    purity. The obtained microcrystals show a sharp onset in absorbance and single
+    narrow emission peak in UV-blue spectral range, and we confirm their structure and
+    composition with X-ray diffraction and energy dispersive spectroscopy. We show that
+    we can tailor the spectral absorption of microcrystals samples by controlled mixing
+    of the n-phase pure powders, and we demonstrate this capability with spectral
+    photocurrent measurements using pellets pressed from pure and mixed powders. Both
+    the spectral and dynamic response of the photocurrent of the pellets depend strongly
+    on the composition of the powders, highlighting the design potential of our approach
+    towards band-edge engineering.
+
+----------------------------------------------------------------------------------------
+23. Universal Synthesis of Large-Area Hybrid Perovskite Monolayers Enabling
+   Lithography-Free, Low-Static-Power Optoelectronics
+
+  Authors: Shankeerthan Kalyanasundaram, Swarit Dwivedi, Sanje Mahasivam, Christopher R.
+  McNeill, Sudha Mokkapati
+  First submitted: 22-10-2026 05:35 UTC
+  arXiv: https://arxiv.org/abs/2610.30764
+
+  Why it was selected:
+    It demonstrates large-area ultrathin perovskites, including (PEA)2PbI4 channels, for
+    low-static-power optoelectronic devices.
+
+  Material mentioned: (PEA)2PbI4
+  DOI: (not supplied by arXiv)
+  Publication: No matching journal DOI found in Crossref; peer review unverified
+  Abstract:
+    Solution-phase synthesis of monolayer hybrid organic-inorganic perovskites is
+    constrained by rapid out-of-plane crystal growth, uncontrolled nucleation, and
+    strong interlayer aggregation, yielding flakes of only a few μm. We introduce a
+    steric-engineering ternary-solvent growth strategy to synthesize monolayer and
+    few-layer A2MX4 hybrid perovskites with exceptionally large surface areas. By
+    combining alcohol cosolvents with an amine additive, out-of-plane stacking is
+    suppressed. Using (PEA)2CuCl4 as a model system, monolayers with lateral areas
+    exceeding 1000 μm2 are achieved, representing a massive dimensional increase over
+    conventional methods. Molecular dynamics and quantum-chemical calculations show that
+    longer-chain alcohols reorganize precursor solvation, while solvent volatility
+    prolongs edge-mediated precursor transport during annealing. This strategy
+    demonstrates universal applicability across diverse organic spacer cations (PEA+,
+    F-PEA+, PentA+), metal centers (Cu2+, Mn2+, Pb2+), and halides (Cl-, Br-, I-). The
+    large lateral dimensions enable direct, solvent-free electrical contact fabrication
+    via physical shadow masking, bypassing chemical degradation from solvents used in
+    conventional lithography. Planar devices fabricated from isolated ultrathin
+    (PEA)2PbI4 channels exhibit ultra-low dark currents down to the 10^-15 - 10^-13 A
+    range, enabling femtowatt-to-picowatt static power consumption, ~ 0.2 pW at 5 V, a
+    250-fold reduction relative to drop-cast films, while maintaining a high
+    light-to-dark current ratio of 4.3 x 102. This work establishes precise steric and
+    solvation control as a paradigm for scalable, compositionally diverse,
+    low-static-power monolayer 2D perovskite optoelectronics.
