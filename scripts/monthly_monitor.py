@@ -20,7 +20,7 @@ import search_experiment as se
 FOCUS = fc.ROOT / "data" / "research_focus.txt"
 RUNS = fc.ROOT / "data" / "monthly_runs"
 MAX_DAYS = 90
-MAX_PROMPTS = 5
+MAX_PROMPTS = 6
 
 
 def screening_fingerprint():
@@ -189,7 +189,7 @@ def screen(plan_path, approval):
     try:
         data = plan_path.read_bytes()
         digest = hashlib.sha256(data).hexdigest()
-        if digest != approval:
+        if digest != approval.lower():
             raise fc.SetupError("Approval hash does not match the plan; review and approve the exact snapshot.")
         plan = json.loads(data)
         if (plan["version"] != 1 or plan["model"] != fc.COPILOT_MODEL
