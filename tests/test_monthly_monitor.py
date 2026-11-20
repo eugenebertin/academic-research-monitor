@@ -227,6 +227,18 @@ class MonthlyMonitorTest(unittest.TestCase):
             mm.screen(path, digest)
         self.model_mock.assert_not_called()
 
+    def test_approval_hash_accepts_uppercase_hex(self):
+        self.rows[:] = [paper(1, "Cu2O thin film")]
+        self.model_mock.return_value = [("P01", "Possible absorber", "Cu2O", "")]
+        path = self.prepare(percent=100, limit=1)
+
+        with contextlib.redirect_stdout(io.StringIO()):
+            mm.screen(path, self.approve(path).upper())
+
+        self.assertEqual(self.model_mock.call_count, 1)
+        self.assertIn("MONTHLY RUN: COMPLETE",
+                      mm.report_path(path.parent).read_text(encoding="utf-8"))
+
     def test_one_shot_approval_and_checkpoint_on_failure(self):
         path = self.prepare()
         self.model_mock.side_effect = [[("P01", "Possible absorber", "Cu2O", "")], fc.SetupError("offline")]
