@@ -164,6 +164,22 @@ class MonthlyMonitorTest(unittest.TestCase):
         self.assertIn("Token/credit usage is not estimated", text)
         self.model_mock.assert_not_called()
 
+    def test_six_prompt_screening_is_supported_and_seven_is_rejected(self):
+        self.rows[:] = [paper(i, "Cu2O thin film") for i in range(201)]
+        path = self.prepare(percent=100, limit=6)
+        plan = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(mm.fm.request_count(plan["papers"]), 6)
+
+        with mock.patch.object(mm.fm, "collect_copilot", return_value={}):
+            with contextlib.redirect_stdout(io.StringIO()):
+                mm.screen(path, self.approve(path))
+        self.assertEqual(self.model_mock.call_count, 6)
+        self.assertTrue(mm.report_path(path.parent).read_text(encoding="utf-8").startswith(
+            "MONTHLY RUN: COMPLETE"))
+
+        with self.assertRaisesRegex(fc.SetupError, "Invalid bounds"):
+            mm.prepare(self.focus, self.categories, 30, 3, 100, 7, self.root / "runs", self.now)
+
     def test_focus_mismatch_and_bounds_refuse_before_fetch(self):
         self.focus.write_text("Different focus", encoding="utf-8")
         with self.assertRaisesRegex(fc.SetupError, "exact focus"):

@@ -41,7 +41,7 @@ After screening, the program queries Crossref for each selected DOI, or searches
 
 First accept categories using `research_monitor --interest-file data\research_focus.txt`. The saved `selected_categories.csv` must contain the same focus as the file; a changed focus requires choosing categories again.
 
-For a manual test, run `monthly_monitor manual`. It asks how many days to fetch (1–90), ending three days ago, and previews the run with at most one screening prompt by default. You can set `--max-prompts` to 1–5. It does not screen until you separately approve the resulting snapshot using the printed command.
+For a manual test, run `monthly_monitor manual`. It asks how many days to fetch (1–90), ending three days ago, and previews the run with at most one screening prompt by default. You can set `--max-prompts` to 1–6. It does not screen until you separately approve the resulting snapshot using the printed command.
 
 ```powershell
 monthly_monitor prepare --max-prompts 2
@@ -51,7 +51,7 @@ monthly_monitor prepare --max-prompts 2
 
 By default, the first window is 30 inclusive UTC days, ending three days before today. Later windows start the day after the last **contiguous, successfully completed** coverage for the same focus and categories, using plans and reports in `--runs-dir`. Unapproved or incomplete runs do not advance it. A short manual run cannot skip a gap: the next automatic window fills that gap first. If more than 90 days are due, the oldest 90 are prepared first; approve successive runs to catch up. If no new dates are eligible, preparation stops without fetching.
 
-Options: `--days` (1–90, explicitly overrides the automatic window), `--lag` (3–30 days), `--shortlist-percent` (1–100, default 10), `--max-prompts` (required, 1–5), `--focus` and `--categories`. More than the approved prompt limit stops before screening; reduce the window or shortlist and prepare again. `prepare` can still preview an over-limit plan.
+Options: `--days` (1–90, explicitly overrides the automatic window), `--lag` (3–30 days), `--shortlist-percent` (1–100, default 10), `--max-prompts` (required, 1–6), `--focus` and `--categories`. More than the approved prompt limit stops before screening; reduce the window or shortlist and prepare again. `prepare` can still preview an over-limit plan.
 
 Local BM25 ranks titles and abstracts using the focus text; only the top percentage with nonzero scores are sent to Copilot. This reduces volume but can miss relevant work, especially materials with different terminology. It does not use embeddings or the OpenAI API. Screening uses `gpt-6-luna`, classified as a lightweight model in [GitHub's pricing table](https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing); its availability and pricing may change. Each prompt holds up to 40 papers and the preview shows the model and prompt count. Prompt counts are not token or credit estimates. Check your account's model access, usage and budget separately.
 
