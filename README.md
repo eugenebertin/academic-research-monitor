@@ -32,10 +32,10 @@ py --version
 curl.exe --version
 ```
 
-Download the project and go into its folder:
+On GitHub, copy the HTTPS URL of this repository (or your fork). Replace `<repository-url>` below with that URL, then run:
 
 ```powershell
-git clone https://github.com/eugenebertin/academic-research-monitor.git
+git clone <repository-url>
 cd academic-research-monitor
 ```
 
