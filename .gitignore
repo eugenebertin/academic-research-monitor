@@ -8,5 +8,6 @@ data/paper_matches.csv
 data/paper_matches_settings.json
 data/paper_embeddings.json
 data/research_report.txt
+data/monthly_runs/
 data/paper_matches_ids.csv
 data/experiments/

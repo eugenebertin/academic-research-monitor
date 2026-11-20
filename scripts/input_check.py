@@ -38,11 +38,17 @@ For "needs_detail", write one short, specific follow-up question that would make
 def check(instructions, payload, api_key):
     """Return (verdict, question). payload is a dict of the user's texts."""
     import openai
-    from pydantic import BaseModel
+    from pydantic import BaseModel, ConfigDict
 
     class Check(BaseModel):
+        model_config = ConfigDict(extra="forbid")
         verdict: Literal["usable", "needs_detail", "unrelated"]
         question: str
+
+    if api_key is None:
+        import copilot_provider
+        result = copilot_provider.request(instructions, json.dumps(payload, ensure_ascii=False), Check)
+        return result.verdict, result.question.strip()
 
     client = openai.OpenAI(api_key=api_key)
     with openai_errors():
