@@ -130,7 +130,7 @@ class BuildReportTest(unittest.TestCase):
 
 def picks_for(interest, taxonomy, api_key):
     """Stands in for find_categories.ask_model: different picks per description, plus an invented code."""
-    assert api_key == FAKE_KEY
+    assert api_key is None
     if "revised" in interest:
         return [("cs.CL", "Revised: computational linguistics."), ("cs.NOPE", "invented")]
     return [("cs.CV", "First try: vision.")]
@@ -143,6 +143,15 @@ PAPERS = [
 ]
 
 
+def fake_copilot(instructions, prompt, schema):
+    with rm.fc.openai_errors():
+        return FakeOpenAI(FAKE_KEY).parse(
+            model="test", reasoning={}, instructions=instructions, input=prompt, text_format=schema
+        ).output_parsed
+
+
+@mock.patch("copilot_provider.request", fake_copilot)
+@mock.patch("publication_check.annotate", lambda papers: None)
 @mock.patch.dict(os.environ, {"OPENAI_API_KEY": FAKE_KEY})
 @mock.patch("fetch_papers.time.sleep", lambda s: None)
 @mock.patch("find_categories.ask_model", picks_for)
@@ -189,7 +198,7 @@ class FlowTest(unittest.TestCase):
         with mock.patch("builtins.input", self.input), mock.patch("fetch_papers.fetch_page", self.arxiv), \
                 contextlib.redirect_stdout(out), contextlib.redirect_stderr(out):
             try:
-                rm.main()
+                rm.main([])
             except SystemExit as e:
                 code = e.code
         return out.getvalue(), code
@@ -251,7 +260,7 @@ class FlowTest(unittest.TestCase):
         self.arxiv = FakeArxiv(list(PAPERS))
         with mock.patch("builtins.input", watching_input), mock.patch("fetch_papers.fetch_page", self.arxiv), \
                 contextlib.redirect_stdout(io.StringIO()):
-            rm.main()
+            rm.main([])
         self.assertEqual(seen, {"rows_on_disk": 3, "fetch_requests": 1})
 
     def test_no_papers_stops_before_matching(self):
@@ -269,7 +278,7 @@ class FlowTest(unittest.TestCase):
         out, code = self.run_flow("revised: MT", "a", "21-09-2026", "22-09-2026", "Only evaluation.", "l", "n")
         self.assertIn("Your research description:\n  revised: MT", out)
         self.assertIn("3 papers to screen", out)
-        self.assertIn("in 1 requests.", out)
+        self.assertIn("in 1 prompts", out)
         self.assertNotIn("$", out)
         self.assertNotIn("tokens", out)
         self.assertIn("Run matching? [y/N]", self.input.prompts[-1])
@@ -496,7 +505,7 @@ class FlowTest(unittest.TestCase):
         with mock.patch("openai.OpenAI", FakeRerankOpenAI), mock.patch.object(rm.rr, "SHORTLIST_PERCENT", 10), \
                 mock.patch("builtins.input", watching_input), mock.patch("fetch_papers.fetch_page", FakeArxiv(PAPERS)), \
                 contextlib.redirect_stdout(out):
-            rm.main()
+            rm.main([])
         self.assertIn("shortlist the top 1 (10% of 3, rounded up)", seen["printed_before_confirmation"])
         self.assertEqual(seen["requests_before_confirmation"], 0)
         [sent] = FakeRerankOpenAI.inputs
@@ -541,7 +550,7 @@ class FlowTest(unittest.TestCase):
         for stage in ("input checks", "category selection", "arXiv fetch", "LLM screening"):
             self.assertIn(stage, summary)
         self.assertIn("(3 papers)", summary)
-        self.assertIn("(1 of 1 requests; retries happen inside the OpenAI SDK and are not counted)", summary)
+        self.assertIn("(1 of 1 Copilot prompts completed)", summary)
         self.assertNotIn("embedding", summary)
 
     def test_hybrid_run_times_embedding_ranking_and_screening_with_retries(self):
@@ -582,7 +591,7 @@ class FlowTest(unittest.TestCase):
                 mock.patch("research_monitor.time.perf_counter", lambda: clock[0]), \
                 mock.patch("input_check.check_description", check), mock.patch("input_check.check_details", check), \
                 contextlib.redirect_stdout(io.StringIO()):
-            rm.main()
+            rm.main([])
         self.assertEqual(rm.TIMINGS, {"input checks": 4.0, "category selection": 0.0, "arXiv fetch": 0.0})
 
     def test_timing_summary_lists_stages_in_pipeline_order(self):

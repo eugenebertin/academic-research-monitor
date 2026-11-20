@@ -14,24 +14,27 @@ the previous stage:
      from the original description.
   5. Choose a matching method: LLM-only (the model screens every paper) or the experimental
      hybrid path (search shortlist, then LLM reranking; see rerank_papers). Show the number
-     of OpenAI requests; match and save data/paper_matches.csv only if confirmed.
+     of requests; match and save data/paper_matches.csv only if confirmed.
   6. After matching, write a readable report to data/research_report.txt.
 
 A report from an earlier run is deleted as soon as this run starts replacing result
 files (when categories are accepted), so a stale report never sits next to new CSVs.
 """
 
+import argparse
 import sys
 import textwrap
 import time
 from contextlib import contextmanager
 from datetime import datetime, time as dtime, timezone
+from pathlib import Path
 
 import fetch_papers as fp
 import find_categories as fc
 import find_paper_matches as fm
 import input_check as ic
 import rerank_papers as rr
+import publication_check as pc
 
 SELECTED = fp.SELECTED
 RETRIEVED = fp.RETRIEVED
@@ -46,6 +49,7 @@ REPORT_WIDTH = 88
 # is timed (model, arXiv and local computation), never time spent waiting for the user's answers.
 TIMINGS = {}
 TIMING_NOTES = {}
+COPILOT_PROMPTS = {}
 STAGES = ["input checks", "category selection", "arXiv fetch", "embedding cache check", "keyword extraction",
           "embedding", "local ranking", "LLM screening"]
 
@@ -120,6 +124,7 @@ def checked_description(text, api_key):
     while True:
         print("\nChecking your description...")
         with timed("input checks"):
+            COPILOT_PROMPTS["input checks"] = COPILOT_PROMPTS.get("input checks", 0) + 1
             verdict, question = ic.check_description(text, api_key)
         if verdict == "usable":
             return text
@@ -144,6 +149,7 @@ def ask_details(interest, api_key):
             return ""
         print("\nChecking your details...")
         with timed("input checks"):
+            COPILOT_PROMPTS["input checks"] = COPILOT_PROMPTS.get("input checks", 0) + 1
             verdict, question = ic.check_details(details, interest, api_key)
         if verdict == "usable":
             return details
@@ -160,12 +166,13 @@ def ask_details(interest, api_key):
 
 # --- 1. Categories ---------------------------------------------------------
 
-def choose_categories(taxonomy, api_key):
+def choose_categories(taxonomy, api_key, initial_interest=None):
     """Suggest categories until the user accepts. Returns (interest, rows)."""
-    interest = checked_description(ask_description("Describe your research interests:\n> "), api_key)
+    interest = checked_description(initial_interest or ask_description("Describe your research interests:\n> "), api_key)
     while True:
-        print(f"\nAsking {fc.MODEL} to match your description against {len(taxonomy)} arXiv categories...\n")
+        print(f"\nAsking Copilot ({fc.COPILOT_MODEL}) to match your description against {len(taxonomy)} arXiv categories...\n")
         with timed("category selection"):
+            COPILOT_PROMPTS["category selection"] = COPILOT_PROMPTS.get("category selection", 0) + 1
             rows, rejected = fc.validate(fc.ask_model(interest, taxonomy, api_key), taxonomy)
         if rows:
             fc.print_results(rows, rejected)
@@ -265,10 +272,10 @@ def build_report(interest, details, categories, start, end, papers, matches, don
     search passed to the model, the AI-chosen keyword search terms, and the percentage the shortlist was cut at.
     """
     rule = "=" * REPORT_WIDTH
-    how = (f"Papers were selected by an AI model ({fc.MODEL}) from each paper's title and abstract only."
+    how = (f"Papers were selected by GitHub Copilot ({fc.COPILOT_MODEL}) from each paper's title and abstract only."
            if shortlisted is None else
            f"Experimental method: hybrid search (text embeddings plus keyword ranking) shortlisted the top "
-           f"{shortlist_percent}% of papers ({shortlisted}), then an AI model ({fc.MODEL}) accepted or rejected each one from its title and abstract "
+           f"{shortlist_percent}% of papers ({shortlisted}), then OpenAI ({fc.MODEL}) accepted or rejected each one from its title and abstract "
            "only. Papers outside the shortlist were never shown to the model. Relevance scores are the model's "
            "0-100 judgments, used only for ordering; they are not probabilities.")
     lines = [
@@ -277,6 +284,8 @@ def build_report(interest, details, categories, start, end, papers, matches, don
         f"Created: {created:%d-%m-%Y %H:%M} UTC",
         "",
         paragraph(f"{how} The full papers were not read. Check each paper yourself before relying on it.", ""),
+        paragraph("Material and database names below are copied from titles or abstracts, not verified growth "
+                  "recommendations or database records. Check novelty, synthesis history and suitability.", ""),
     ]
     if error:
         lines += ["", "INCOMPLETE: matching stopped early.",
@@ -299,6 +308,10 @@ def build_report(interest, details, categories, start, end, papers, matches, don
           if keywords is not None else []),
         f"Papers selected as matches:  {len(matches)}"
         + (f" (from the {done} of {batches} batches that finished)" if error else ""),
+        f"Screening batches completed: {done} of {batches}"
+        + ("; one additional batch failed" if error else ""),
+        *(["Copilot usage: token consumption and charges are not measured by this report."]
+          if shortlisted is None else []),
     ]
     if not matches:
         lines += ["", "No papers were selected as matches for your description."]
@@ -311,6 +324,13 @@ def build_report(interest, details, categories, start, end, papers, matches, don
             f"  arXiv: {p['url']}",
             *([f"  Model relevance score: {p['relevance_score']}/100"] if "relevance_score" in p else []), "",
             "  Why it was selected:", paragraph(p["match_reason"], "    "), "",
+            *([f"  Material mentioned: {p['material_mentioned']}"] if p.get("material_mentioned") else []),
+            *([f"  Database mentioned: {p['database_mentioned']}"] if p.get("database_mentioned") else []),
+            f"  DOI: {p.get('doi') or '(not supplied by arXiv)'}",
+            *([f"  Possible published DOI: https://doi.org/{p['publication_doi']}"]
+              if p.get("publication_doi") else []),
+            f"  Publication: {p.get('publication_status') or 'not checked'}",
+            *([f"  Venue: {p['publication_venue']}"] if p.get("publication_venue") else []),
             "  Abstract:", paragraph(p["abstract"], "    "),
         ]
     return "\n".join(lines) + "\n"
@@ -324,14 +344,18 @@ def remove_old_report(path):
 
 # --- Flow ------------------------------------------------------------------
 
-def run():
+def run(initial_interest=None):
     TIMINGS.clear()
     TIMING_NOTES.clear()
+    COPILOT_PROMPTS.clear()
     taxonomy = fc.load_taxonomy()
-    api_key = fc.load_api_key()
+    api_key = None
+
+    print("The input checks and category selection use Copilot prompts before screening.")
+    print("Copilot usage depends on your plan and model; check your GitHub usage and budget.")
 
     print("Step 1 of 5: categories")
-    interest, rows = choose_categories(taxonomy, api_key)
+    interest, rows = choose_categories(taxonomy, api_key, initial_interest)
     fc.save(rows, interest, SELECTED)
     codes = [r["code"] for r in rows]
     print(f"Saved {len(rows)} categories to {SELECTED}")
@@ -359,12 +383,16 @@ def run():
     details = ask_details(interest, api_key)
 
     print("\nStep 5 of 5: matching")
-    method = choose({"l": "LLM screens every paper", "h": "Hybrid search shortlist + LLM rerank (experimental)"})
+    print("Selected papers will also be checked against Crossref using their DOI or title and author.")
+    method = choose({"l": "Copilot screens every paper",
+                     "h": "OpenAI embeddings + OpenAI screening (experimental; requires API key and billing)"})
     if method == "l":
         batches = fm.request_count(papers)
-        print(f"{len(papers)} papers to screen. Matching will send their titles and abstracts to {fc.MODEL} "
-              f"in {batches} requests.")
+        fm.check_copilot_limit(papers)
+        print(f"{len(papers)} papers to screen. Matching will send their titles and abstracts to Copilot "
+              f"({fc.COPILOT_MODEL}) in {batches} prompts (limit: {fm.MAX_COPILOT_BATCHES}).")
     else:
+        api_key = fc.load_api_key()
         with timed("embedding cache check"):
             plan = rr.describe_plan(papers, interest, details, EMBEDDINGS)
         print(plan)
@@ -379,8 +407,9 @@ def run():
     if method == "l":
         with timed("LLM screening"):
             matches, done, error = fm.match_papers(interest, papers, api_key, details)
-        TIMING_NOTES["LLM screening"] = (f"{done} of {batches} requests; retries happen inside the OpenAI SDK "
-                                         "and are not counted")
+        TIMING_NOTES["LLM screening"] = f"{done} of {batches} Copilot prompts completed"
+        fm.save(matches, MATCHES)
+        pc.annotate(matches)
         fm.report(matches, papers, done, batches, error, MATCHES)
     else:
         matches, stats, error = rr.run(interest, papers, api_key, details, EMBEDDINGS)
@@ -394,6 +423,8 @@ def run():
         TIMING_NOTES["LLM screening"] = (f"{stats['batches_done']} of {stats['batches']} requests, "
                                          f"{usage['retries']} retries, {usage['retry_wait_seconds']:.1f} s "
                                          "waiting before retries")
+        rr.save(matches, stats, interest, details, error, RETRIEVED, MATCHES)
+        pc.annotate(matches)
         rr.print_results(matches, stats, error)
         rr.save(matches, stats, interest, details, error, RETRIEVED, MATCHES)
         print(f"Saved to {MATCHES}")
@@ -401,15 +432,30 @@ def run():
         shortlist_percent = stats["shortlist_percent"]
         keywords = stats["bm25_keywords"]
     REPORT.write_text(build_report(interest, details, rows, start, end, papers, matches, done, batches, error,
-                                   datetime.now(timezone.utc), shortlisted, keywords, shortlist_percent),
+                                   datetime.now(timezone.utc), shortlisted, keywords, shortlist_percent)
+                      + "\nCopilot prompts before screening: "
+                      + f"{COPILOT_PROMPTS.get('input checks', 0)} input checks, "
+                      + f"{COPILOT_PROMPTS.get('category selection', 0)} category selections.\n",
                       encoding="utf-8")
     print(f"{'Incomplete report' if error else 'Report'} saved to {REPORT}")
     print("\n" + timing_summary(TIMINGS, TIMING_NOTES))
 
 
-def main():
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="Find and screen arXiv titles and abstracts.")
+    parser.add_argument("--interest-file", type=Path, help="UTF-8 file containing the research description")
+    args = parser.parse_args(argv)
     try:
-        run()
+        interest = None
+        if args.interest_file:
+            try:
+                interest = args.interest_file.read_text(encoding="utf-8-sig").strip()
+            except OSError as e:
+                raise fc.SetupError(f"Cannot read interest file: {e}") from e
+            if not interest:
+                raise fc.SetupError("The interest file is empty.")
+            print(f"Research description loaded from {args.interest_file}.")
+        run(interest)
     except fc.SetupError as e:
         print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)

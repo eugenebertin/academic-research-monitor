@@ -38,6 +38,15 @@ class ParseFeedTest(unittest.TestCase):
         self.assertEqual(fp.strip_version("hep-th/9901001v2"), "hep-th/9901001")
         self.assertEqual(fp.strip_version("solv-int/9901001"), "solv-int/9901001")
 
+    def test_extracts_arxiv_doi_and_journal_reference(self):
+        record = entry("2609.00001", "2026-09-21T01:00:00Z").replace(
+            "</entry>", "<arxiv:doi>10.1000/example</arxiv:doi>"
+            "<arxiv:journal_ref>Example Journal 1</arxiv:journal_ref></entry>"
+        )
+        _, papers = fp.parse_feed(feed([record]))
+        self.assertEqual(papers[0]["doi"], "10.1000/example")
+        self.assertEqual(papers[0]["journal_ref"], "Example Journal 1")
+
 
 @mock.patch("fetch_papers.time.sleep", lambda s: None)
 @mock.patch("builtins.print", lambda *a, **k: None)

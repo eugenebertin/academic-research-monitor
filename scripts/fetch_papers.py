@@ -43,7 +43,7 @@ NS = {
 }
 
 PAPER_FIELDS = ["arxiv_id", "title", "abstract", "authors", "submitted", "primary_category",
-                "categories", "url", "pdf_url"]
+                "categories", "url", "pdf_url", "doi", "journal_ref"]
 
 
 # --- arXiv ---------------------------------------------------------------
@@ -98,6 +98,8 @@ def parse_feed(xml):
             "categories": " ".join(cats),
             "url": f"https://arxiv.org/abs/{arxiv_id}",
             "pdf_url": pdf or f"https://arxiv.org/pdf/{arxiv_id}",
+            "doi": text(entry, "arxiv:doi"),
+            "journal_ref": text(entry, "arxiv:journal_ref"),
         })
     return total, papers
 

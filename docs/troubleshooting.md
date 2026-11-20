@@ -24,7 +24,11 @@ Every new PowerShell window starts without it. Go to the project folder and run 
 **"research_monitor is not recognized as the name of a cmdlet…"**
 Either the virtual environment isn't active (look for `(.venv)`), or the program isn't installed. With `(.venv)` showing, run `pip install -e .` from the project folder. Run it again too if you moved or renamed the project folder.
 
-## API key and billing
+## Copilot authentication and limits
+
+The normal path uses the Copilot CLI's stored sign-in. Sign in with `copilot`, check that your account has access to the configured model and check your GitHub usage and budget. Environment credentials can override the stored sign-in; see [SDK authentication priority](https://github.com/microsoft/copilot-sdk/blob/main/docs/auth/README.md). The runtime is downloaded on first use and needs network access. Screening stops when it would exceed `MAX_COPILOT_BATCHES`; shorten the date range or deliberately adjust the limit.
+
+## OpenAI API key and billing (experimental option `h` only)
 
 **"Error: OPENAI_API_KEY is not set. Add a line OPENAI_API_KEY=... to …\.env"**
 Check that the file is named exactly `.env` (not `.env.txt`), sits in the project folder (`notepad .env` opens it), and contains one line: `OPENAI_API_KEY=` followed directly by your key. A Windows environment variable named `OPENAI_API_KEY` takes priority over `.env`, so if you set one in the past, that key is used instead.

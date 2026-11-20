@@ -33,7 +33,8 @@ RERANK_BATCH = 20  # papers per request
 WORKERS = 4  # parallel requests
 EFFORT = "low"
 PROMPT_VERSION = "rerank-v1"
-CSV_FIELDS = PAPER_FIELDS + ["relevance_score", "match_reason"]
+CSV_FIELDS = PAPER_FIELDS + ["relevance_score", "match_reason", "publication_doi",
+                             "publication_status", "publication_venue"]
 
 RATE_LIMIT_RETRIES = 5
 MAX_WAIT = 60.0  # seconds; a longer server-requested wait fails instead of stalling the run
@@ -408,6 +409,9 @@ def main():
     except SetupError as e:
         print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)
+    save(matches, stats, interest, "", error, RETRIEVED)
+    import publication_check
+    publication_check.annotate(matches)
     print_results(matches, stats, error)
     save(matches, stats, interest, "", error, RETRIEVED)
     print(f"Saved to {fm.OUT} (settings in {settings_path(fm.OUT).name})")

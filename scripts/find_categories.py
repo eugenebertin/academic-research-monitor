@@ -3,11 +3,9 @@
 Usage:
   find_categories "I am looking for papers in computational linguistics and AI"
 
-Sends the taxonomy from data/arxiv_taxonomy.csv plus the interest text to the
-OpenAI API, checks every returned code against the CSV, prints the matches and
+Sends the taxonomy from data/arxiv_taxonomy.csv plus the interest text to
+Copilot, checks every returned code against the CSV, prints the matches and
 saves them to data/selected_categories.csv (overwritten on each run).
-
-Reads OPENAI_API_KEY from the environment, or from .env in the project root.
 """
 
 import csv
@@ -15,6 +13,8 @@ import os
 import sys
 from contextlib import contextmanager
 from pathlib import Path
+
+from copilot_provider import MODEL as COPILOT_MODEL
 
 ROOT = Path(__file__).resolve().parent.parent
 TAXONOMY = ROOT / "data" / "arxiv_taxonomy.csv"
@@ -88,14 +88,24 @@ def format_taxonomy(taxonomy):
 def ask_model(interest, taxonomy, api_key):
     # Imported here so the offline parts (taxonomy, validation, output) work without the SDK.
     import openai
-    from pydantic import BaseModel
+    from pydantic import BaseModel, ConfigDict
 
     class Pick(BaseModel):
+        model_config = ConfigDict(extra="forbid")
         code: str
         reason: str
 
     class Picks(BaseModel):
+        model_config = ConfigDict(extra="forbid")
         categories: list[Pick]
+
+    if api_key is None:
+        import copilot_provider
+        response = copilot_provider.request(
+            INSTRUCTIONS, f"Researcher's interests:\n{interest}\n\narXiv categories:\n{format_taxonomy(taxonomy)}",
+            Picks,
+        )
+        return [(p.code, p.reason) for p in response.categories]
 
     client = openai.OpenAI(api_key=api_key)
     with openai_errors():
@@ -155,8 +165,8 @@ def main():
         sys.exit(2)
     try:
         taxonomy = load_taxonomy()
-        api_key = load_api_key()
-        print(f"Asking {MODEL} to match your interests against {len(taxonomy)} arXiv categories...\n")
+        api_key = None
+        print(f"Asking Copilot ({COPILOT_MODEL}) to match your interests against {len(taxonomy)} arXiv categories...\n")
         rows, rejected = validate(ask_model(interest, taxonomy, api_key), taxonomy)
     except SetupError as e:
         print(f"Error: {e}", file=sys.stderr)

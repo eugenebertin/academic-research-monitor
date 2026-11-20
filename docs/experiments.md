@@ -2,7 +2,7 @@
 
 [Back to the README](../README.md)
 
-The search-first matching option (`h`) and the two comparison scripts below are experiments. Their results are useful, but they haven't been checked against a fixed set of papers whose relevance is known, so neither method has been shown to be more accurate.
+The search-first matching option (`h`) and the two comparison scripts below are experiments. They use the separately billed OpenAI API, not Copilot; an OpenAI API key is required. Their results are useful, but they haven't been checked against a fixed set of papers whose relevance is known, so neither method has been shown to be more accurate.
 
 ## The search-first option in `research_monitor`
 
