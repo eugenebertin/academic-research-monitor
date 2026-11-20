@@ -18,6 +18,9 @@ hash and a prompt cap, runs once, and checkpoints dated reports. Monthly schedul
 delivery mechanism, monitoring and credential verification; no scheduler is configured.
 `data/monthly_categories.csv` records the approved focus and categories for fresh checkouts. Pass an absolute
 `--runs-dir` outside disposable worktrees to preserve plans and reports; the default remains worktree-local.
+Automatic windows continue after contiguous completed coverage for the same focus and categories, in chunks
+of at most 90 days; incomplete and disjoint runs must not skip gaps. Preserve completed plans, approval
+markers and reports in the runs directory for this calculation.
 
 The older OpenAI-only descriptions below apply only where consistent with this transition.
 
