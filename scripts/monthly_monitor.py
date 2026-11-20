@@ -20,7 +20,7 @@ import search_experiment as se
 FOCUS = fc.ROOT / "data" / "research_focus.txt"
 RUNS = fc.ROOT / "data" / "monthly_runs"
 MAX_DAYS = 90
-MAX_PROMPTS = 5
+MAX_PROMPTS = 6
 
 
 def screening_fingerprint():
