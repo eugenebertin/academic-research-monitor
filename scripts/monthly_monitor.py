@@ -6,7 +6,7 @@ import hashlib
 import json
 import sys
 import uuid
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import copilot_provider as cp
@@ -56,8 +56,51 @@ def shortlist(papers, interest, percent):
     return [by_id[key] for key in ids]
 
 
+def covered_through(runs, interest, categories):
+    if not runs.exists():
+        return None
+    codes = {row["code"] for row in categories}
+    intervals = []
+    for run_dir in runs.iterdir():
+        if not run_dir.is_dir():
+            continue
+        for report in (report_path(run_dir), run_dir / "report.txt"):
+            if not report.exists():
+                continue
+            with report.open(encoding="utf-8") as stream:
+                complete = stream.readline().rstrip("\r\n") == "MONTHLY RUN: COMPLETE"
+            if not complete:
+                continue
+            try:
+                data = (run_dir / "plan.json").read_bytes()
+                approved = (run_dir / "screen.started").read_text(encoding="utf-8").strip()
+                plan = json.loads(data)
+                if hashlib.sha256(data).hexdigest() != approved:
+                    raise ValueError("plan does not match approval")
+                start = date.fromisoformat(plan["start"])
+                end = date.fromisoformat(plan["end"])
+                plan_codes = {row["code"] for row in plan["categories"]}
+                plan_interest = plan["interest"]
+                if start > end or not plan_codes:
+                    raise ValueError("invalid date range or categories")
+            except (OSError, ValueError, KeyError, TypeError) as e:
+                raise fc.SetupError(f"Cannot use completed run {run_dir}: {e}") from e
+            if plan_interest == interest and plan_codes == codes:
+                intervals.append((start, end))
+            break
+    if not intervals:
+        return None
+    intervals.sort()
+    _, covered = intervals[0]
+    for start, end in intervals[1:]:
+        if start > covered + timedelta(days=1):
+            break
+        covered = max(covered, end)
+    return covered
+
+
 def prepare(focus_path, categories_path, days, lag, percent, max_prompts, runs=RUNS, now=None):
-    if not (1 <= days <= MAX_DAYS and 3 <= lag <= 30 and 1 <= percent <= 100
+    if not ((days is None or 1 <= days <= MAX_DAYS) and 3 <= lag <= 30 and 1 <= percent <= 100
             and 1 <= max_prompts <= MAX_PROMPTS):
         raise fc.SetupError("Invalid bounds: days 1-90, lag 3-30, shortlist percent 1-100, max prompts 1-5.")
     if not runs.is_absolute():
@@ -65,7 +108,21 @@ def prepare(focus_path, categories_path, days, lag, percent, max_prompts, runs=R
     interest, categories = load_inputs(focus_path, categories_path)
     now = now or datetime.now(timezone.utc)
     end = now.date() - timedelta(days=lag)
-    start = end - timedelta(days=days - 1)
+    if days is None:
+        covered = covered_through(runs, interest, categories)
+        if covered is None:
+            start = end - timedelta(days=29)
+            print("No completed run for this focus and category set; starting with 30 days.")
+        else:
+            start = covered + timedelta(days=1)
+            if start > end:
+                raise fc.SetupError(f"No new dates to fetch after {covered}; the latest eligible date is {end}.")
+            if (end - start).days + 1 > MAX_DAYS:
+                end = start + timedelta(days=MAX_DAYS - 1)
+                print(f"Catching up on the oldest {MAX_DAYS} days; later dates need another run.")
+            print(f"Continuing after completed coverage through {covered}.")
+    else:
+        start = end - timedelta(days=days - 1)
     papers, total = fp.fetch_papers([row["code"] for row in categories], *rm.utc_window(start, end))
     chosen = shortlist(papers, interest, percent)
     plan = {
@@ -193,7 +250,7 @@ def main(argv=None):
     plan = actions.add_parser("prepare", help="Fetch and preview without calling a model")
     plan.add_argument("--focus", type=Path, default=FOCUS)
     plan.add_argument("--categories", type=Path, default=fp.SELECTED)
-    plan.add_argument("--days", type=int, default=30)
+    plan.add_argument("--days", type=int, help="Override automatic coverage with a 1-90 day window")
     plan.add_argument("--lag", type=int, default=3)
     plan.add_argument("--shortlist-percent", type=int, default=10)
     plan.add_argument("--max-prompts", type=int, required=True)
