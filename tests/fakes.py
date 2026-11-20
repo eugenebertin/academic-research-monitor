@@ -199,4 +199,9 @@ class FakeOpenAI:
         picks = [{"label": lab, "reason": f"Mentions {self.keyword}."}
                  for lab, t in zip(labels, titles) if self.keyword in t.lower()]
         picks.append({"label": "P99", "reason": "A label that was not in the batch."})
+        from typing import get_args
+        item = get_args(text_format.model_fields["matches"].annotation)[0]
+        if "material" in item.model_fields:
+            for pick in picks:
+                pick.update(material="", database="")
         return SimpleNamespace(output_parsed=text_format(matches=picks))

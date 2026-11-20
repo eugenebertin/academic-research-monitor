@@ -1,5 +1,26 @@
 # CLAUDE.md
 
+## Current provider transition
+
+The normal interactive and standalone category/input-check/screening paths use the official Copilot SDK
+(`copilot_provider.py`, signed-in CLI credentials, tool-free structured output), not an OpenAI key. Screening
+is sequential, requires confirmation, and refuses runs above `MAX_COPILOT_BATCHES`. The experimental hybrid
+path and search/judge experiments still use the OpenAI API and require its key. Copilot prompt counts are
+shown, but actual token usage and charges are not measured. `research_monitor --interest-file` loads a
+reusable description; `data/research_focus.txt` contains the user's supplied focus.
+
+Selected papers' DOI metadata is checked against Crossref, or searched by title and author if arXiv supplied
+no DOI. A journal-article record is not proof of peer review, and a missing match is not proof of its absence.
+The report remains title-and-abstract-only. Possible material/database names are copied from those texts and
+must not be treated as validated growth recommendations. `monthly_monitor prepare` fetches a bounded window
+and locally ranks a snapshot with BM25 without model calls. `screen` requires explicit approval of its exact
+hash and a prompt cap, runs once, and checkpoints dated reports. Monthly scheduling still needs a user-approval
+delivery mechanism, monitoring and credential verification; no scheduler is configured.
+`data/monthly_categories.csv` records the approved focus and categories for fresh checkouts. Pass an absolute
+`--runs-dir` outside disposable worktrees to preserve plans and reports; the default remains worktree-local.
+
+The older OpenAI-only descriptions below apply only where consistent with this transition.
+
 Academic Research Monitor helps a researcher find new arXiv papers relevant to their written interests.
 It is an early, local experiment: one user, Windows + PowerShell, activated `.venv`, Python 3.12.
 
